@@ -1,0 +1,18 @@
+jobs:
+  workflow:
+    name: Verify
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Start Up
+        uses: actions/checkout@v2
+      - name: Pull Deps
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Unit Tests
+        run: ./main/main
+
+name: Check
+
+on:
+  schedule:
+    - cron: "10 */6 * * *"
